@@ -1,0 +1,16 @@
+a)\ Código de regresión lineal de Y en X:
+clc; close all;
+xlabel('Eje x'), ylabel('Eje y'), title('Regresión Lineal de Y en X')
+grid on; 
+hold on;
+varx=7.5;
+vary=10;
+mediax=50;
+mediay=120;
+r=0.90; 
+varx_y=r*varx*vary;
+varx_cuadrado=(varx)^2;
+b=varx_y/varx_cuadrado
+a=mediay-b*mediax
+fprintf('Función: %.1f + %.1fx\n',a,b) 
+

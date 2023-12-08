@@ -1,0 +1,50 @@
+a) MODELO LINEAL
+
+clc; close all;
+x=[12 8 10 7 6 5 5];
+y=[4 5 6 7 8 9 10];
+plot(x,y,'dk'); 
+xlabel('Eje x'), ylabel('Eje y'), title('Regresión Lineal')
+axis([0 9, 0 10]); 
+grid on; 
+hold on;
+n=7; %Es el número total de conjuntos de datos
+sumxi_yi=sum(x.*y);
+sumxi=sum(x);
+sumxi_cuadrado=sum(x.^2);
+cuadrado_sumxi=(sumxi)^2;
+sumyi=sum(y);
+b=(n*sumxi_yi - (sumxi*sumyi))/(n*sumxi_cuadrado - cuadrado_sumxi)
+y_testada=mean(y);
+x_testada=mean(x);
+a=y_testada - b*x_testada
+ fprintf('Función: %.2f + %.2fx\n',a,b)
+
+------------------------------------------------------------------------------------
+
+b) MODELO NO LINEAL O POTENCIA:
+
+clc; close all;
+x=[12 8 10 7 6 5 5];
+y=[4 5 6 7 8 9 10];
+plot(x,y,'dk'); 
+xlabel('Eje x'), ylabel('Eje y'), title('Regresión no Lineal o potencial')
+axis([0 9, 0 10]); 
+grid on; 
+hold on;
+n=7; %Es el número total de conjuntos de datos
+lgxi=log10(x);
+lgyi=log10(y);
+sumlgxi_lgyi=sum(lgxi.*lgyi);
+sumlgxi=sum(lgxi);
+sumlgxi_cuadrado=sum(lgxi.^2);
+cuadrado_sumlgxi=(sumlgxi)^2;
+sumlgyi=sum(lgyi);
+b=(n*sumlgxi_lgyi - (sumlgxi*sumlgyi))/(n*sumlgxi_cuadrado - cuadrado_sumlgxi)
+lgy_testada=mean(lgyi);
+lgx_testada=mean(lgxi);
+c=lgy_testada - b*lgx_testada
+a=10^c
+plot(x,linea_ajuste, 'r--')
+legend('Conjunto de datos','Línea de ajuste')
+

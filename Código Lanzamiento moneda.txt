@@ -1,0 +1,55 @@
+%Lanzamiento de una moneda
+%Donde 1 es cara
+%Donde 2 es sello
+
+N=100; %número de lanzamientos
+v=rand(1,N); %vector con números aleatorios
+X=zeros(1,N); %almacenar el números de veces que salga cara o sello
+p=1/2; %probabilidad que salga cara o sello
+
+figure(1)
+plot(v,'.')
+
+figure(2)
+histogram(v)
+%histogram(v,'BinMethod','auto')
+%histogram(v,'BinMethod','sturges')
+%histogram(v,'BinMethod','sqrt')
+title('Histograma')
+
+%Ciclo para recrear los lanzamientos, contar y mostrar los resultados
+for i=1:N; 
+    if (v(i)<p) %posición de v es menor que p
+        X(i)=1; %posición de X es igual a 1
+    else if (p<=v(i)  && v(i)<(2*p) )
+            X(i)=2;
+        end
+    end
+end
+
+disp(v)
+
+figure(3)
+subplot(1,2,1) %1 fila, 2 columnas y la posición 1
+plot(X,'.')
+title('Lanzamientos')
+subplot(1,2,2)
+histogram(X,'BinMethod','Sturges')
+title('Distribución de Lanzamientos')
+
+%Encontrar el número de veces que cayó cara o sello
+cara=find(X==1); %Encontrar dentro del vector X los número 1
+sello=find(X==2); %Encontrar dentro del vector X los número 2
+f1=length(cara); %contar el número de caras 
+f2=length(sello); %contar el número de sellos
+
+%Calcular la probabilidad y graficarla
+x(1)=f1/N;
+x(2)=f2/N;
+
+y=1:2; %y representa el eje X del gráfico
+figure(4)
+bar(y,x)
+
+figure(5)
+bar(y,x,0.5)
